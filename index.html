@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07140f">
+  <title>Saha Kurası — Dengeli Takımlar</title>
+  <meta name="description" content="Oyuncuları puan ve pozisyonlarına göre iki dengeli halı saha takımına ayır.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="#">SAHA<span>KURASI</span></a>
+    <div class="status"><i></i> Maç modu aktif</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Dengeli takım kurucu</div>
+      <h1>Adil maç.<br><em>İyi rekabet.</em></h1>
+      <p>Oyuncuları ekle. Puan ve pozisyon dengesini biz kuralım.</p>
+      <div class="hero-stats">
+        <div><b id="heroCount">0</b><span>Oyuncu</span></div>
+        <div><b id="heroAvg">—</b><span>Ort. puan</span></div>
+        <div><b id="heroReady">Değil</b><span>Kura durumu</span></div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="panel entry-panel">
+        <div class="panel-head">
+          <div><span class="step">01</span><h2>Oyuncu listesi</h2></div>
+          <button class="text-btn" id="clearAll" type="button">Tümünü temizle</button>
+        </div>
+
+        <form id="playerForm" class="player-form">
+          <label class="name-field">Oyuncu adı<input id="playerName" maxlength="28" placeholder="Örn. Ahmet" autocomplete="off" required></label>
+          <label>Puan<select id="playerRating"><option value="3">3 — İyi</option><option value="4" selected>4 — Çok iyi</option><option value="5">5 — Usta</option></select></label>
+          <label>Pozisyon<select id="playerPosition"><option value="Kaleci">Kaleci</option><option value="Defans">Defans</option><option value="Orta Saha" selected>Orta saha</option><option value="Forvet">Forvet</option></select></label>
+          <button class="add-btn" type="submit" aria-label="Oyuncu ekle"><span>+</span> Ekle</button>
+        </form>
+
+        <div class="list-meta"><span><b id="count">0</b> / 22 oyuncu</span><span id="needed">Kura için en az 14 oyuncu</span></div>
+        <div class="player-list" id="playerList">
+          <div class="empty-state"><div>+</div><p>İlk oyuncuyu ekleyerek başla</p><span>14–22 oyuncu desteklenir</span></div>
+        </div>
+        <button class="draw-btn" id="drawTeams" disabled><span>KURAYI ÇEK</span><small>Puan + pozisyon dengeli</small><b>→</b></button>
+        <p class="hint" id="validationHint">Toplam oyuncu sayısı 14 ile 22 arasında olmalıdır.</p>
+      </div>
+
+      <div class="results" id="results">
+        <div class="results-placeholder">
+          <div class="pitch-icon"><span></span></div>
+          <span class="step">02</span>
+          <h2>Takımlar burada</h2>
+          <p>Oyuncu listesini tamamlayıp kurayı çektiğinde, dengeli kadroların burada görünecek.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <template id="teamTemplate">
+    <article class="team-card">
+      <div class="team-title"><div><span class="team-badge"></span><h3></h3></div><strong></strong></div>
+      <div class="team-players"></div>
+      <div class="team-foot"><span>TOPLAM PUAN</span><b class="team-total"></b><span>ORTALAMA</span><b class="team-average"></b></div>
+    </article>
+  </template>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
